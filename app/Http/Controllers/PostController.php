@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\models\Posts;
 
 class PostController extends Controller
 {
     public function index(){
         $posts =DB::table('posts')->get();
         return view('index',compact('posts'));
+    }
+
+    public function show($id){
+        $posts=Posts::find($id);
+        return view('posts.show',compact('posts'));
     }
 }
